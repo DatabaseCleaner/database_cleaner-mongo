@@ -22,10 +22,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "database_cleaner-core", "2.0.0.beta"
-  spec.add_dependency "mongo"
+  spec.add_dependency "mongo", "~>2.0"
 
   spec.add_development_dependency "bundler"
-  spec.add_development_dependency "appraisal"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
 end
