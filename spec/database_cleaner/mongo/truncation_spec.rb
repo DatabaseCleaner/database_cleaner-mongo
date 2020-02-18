@@ -4,12 +4,11 @@ require './spec/support/database_helper'
 
 RSpec.describe DatabaseCleaner::Mongo::Truncation do
   around do |example|
-    connection = MongoTest::Base.connection
-    subject.db = connection.database
+    subject.db = MongoTest::Base.database
 
     example.run
 
-    connection.database.drop
+    MongoTest::Base.drop_database
   end
 
   before do
