@@ -1,13 +1,15 @@
 module MongoTest
   class Base
+    def self.connection
+      @connection ||= Mongo::Client.new("mongodb://127.0.0.1/database_cleaner_specs")
+    end
+
     def self.collection
-      @connection ||= Mongo::Connection.new('127.0.0.1')
-      @db ||= @connection.db('database_cleaner_specs')
-      @collection ||= @db.collection(name) || @db.create_collection(name)
+      connection[name]
     end
 
     def self.count
-      @collection.count
+      collection.count
     end
 
     def initialize(attrs={})
@@ -15,12 +17,13 @@ module MongoTest
     end
 
     def save!
-      self.class.collection.insert(@attrs)
+      self.class.collection.insert_one(@attrs)
     end
   end
 
   class Widget < Base
   end
+
   class Gadget < Base
   end
 end

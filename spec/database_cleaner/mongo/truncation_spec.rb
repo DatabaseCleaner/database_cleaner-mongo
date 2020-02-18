@@ -4,14 +4,12 @@ require File.dirname(__FILE__) + '/mongo_examples'
 
 RSpec.describe DatabaseCleaner::Mongo::Truncation do
   around do |example|
-    connection = Mongo::Connection.new('127.0.0.1')
-    db_name = 'database_cleaner_specs'
-    db = connection.db(db_name)
-    subject.db = db
+    connection = MongoTest::Base.connection
+    subject.db = connection.database
 
     example.run
 
-    connection.drop_database(db_name)
+    connection.database.drop
   end
 
   before do
