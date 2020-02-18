@@ -6,7 +6,7 @@ GIT
     database_cleaner-core (2.0.0.beta)
 
 PATH
-  remote: .
+  remote: ..
   specs:
     database_cleaner-mongo (2.0.0.beta)
       database_cleaner-core (= 2.0.0.beta)
@@ -49,6 +49,7 @@ DEPENDENCIES
   byebug
   database_cleaner-core!
   database_cleaner-mongo!
+  mongo (~> 2.0)
   rake
   rspec
 

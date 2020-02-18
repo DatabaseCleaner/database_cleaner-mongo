@@ -6,6 +6,9 @@ rvm:
   - 2.5
   - 2.6
   - 2.7
+gemfile:
+  - gemfiles/mongo1.gemfile
+  - gemfiles/mongo2.gemfile
 before_install:
   - gem install bundler -v 1.17.3
 before_script:
