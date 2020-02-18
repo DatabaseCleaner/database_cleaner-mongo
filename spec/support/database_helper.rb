@@ -27,3 +27,4 @@ module MongoTest
   class Gadget < Base
   end
 end
+

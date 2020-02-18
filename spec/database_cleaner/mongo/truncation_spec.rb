@@ -1,6 +1,6 @@
 require 'mongo'
 require 'database_cleaner/mongo/truncation'
-require File.dirname(__FILE__) + '/mongo_examples'
+require './spec/support/database_helper'
 
 RSpec.describe DatabaseCleaner::Mongo::Truncation do
   around do |example|
