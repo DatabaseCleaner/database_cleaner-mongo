@@ -3,6 +3,7 @@ module DatabaseCleaner
     def self.available_strategies
       %w[truncation]
     end
+
     module Base
       def db=(desired_db)
         @db = desired_db
