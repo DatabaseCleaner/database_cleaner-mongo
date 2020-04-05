@@ -1,7 +1,11 @@
 module DatabaseCleaner
   module Mongo
     def self.available_strategies
-      %w[truncation]
+      %i[truncation]
+    end
+
+    def self.default_strategy
+      available_strategies.first
     end
 
     module Base
