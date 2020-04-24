@@ -1,5 +1,7 @@
 require "mongo"
 
+Mongo::Logger.logger.level = Logger::FATAL
+
 class DatabaseHelper
   def host
     @host ||= "127.0.0.1"
