@@ -1,4 +1,3 @@
-require 'mongo'
 require 'database_cleaner/mongo/truncation'
 require './spec/support/database_helper'
 
