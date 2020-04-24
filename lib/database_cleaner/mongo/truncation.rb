@@ -1,9 +1,13 @@
-require 'database_cleaner/generic/truncation'
+require 'database_cleaner/strategy'
+require 'mongo'
 
 module DatabaseCleaner
   module Mongo
-    class Truncation
-      include ::DatabaseCleaner::Generic::Truncation
+    class Truncation < Strategy
+      def initialize only: [], except: []
+        @only = only
+        @except = except
+      end
 
       def db=(desired_db)
         @db = desired_db
@@ -14,10 +18,10 @@ module DatabaseCleaner
       end
 
       def clean
-        if @only
+        if @only.any?
           collections.each { |c| c.delete_many if @only.include?(c.name) }
         else
-          collections.each { |c| c.delete_many unless @tables_to_exclude.include?(c.name) }
+          collections.each { |c| c.delete_many unless @except.include?(c.name) }
         end
         true
       end
