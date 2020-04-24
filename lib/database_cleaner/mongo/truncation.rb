@@ -1,11 +1,17 @@
-require 'database_cleaner/mongo/base'
 require 'database_cleaner/generic/truncation'
 
 module DatabaseCleaner
   module Mongo
     class Truncation
       include ::DatabaseCleaner::Generic::Truncation
-      include Base
+
+      def db=(desired_db)
+        @db = desired_db
+      end
+
+      def db
+        @db || raise("You have not specified a database.  (see Mongo::Database)")
+      end
 
       def clean
         if @only
