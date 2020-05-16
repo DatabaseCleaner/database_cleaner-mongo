@@ -45,5 +45,19 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
       }.from([1,1]).to([1,0])
     end
   end
+
+  context "when new collection is created after clean" do
+    before do
+      subject.clean
+
+      Gizmo.new(name: 'some gizmo').save!
+    end
+
+    it "truncates new collection" do
+      expect { subject.clean }.to change {
+        Gizmo.count
+      }.from(1).to(0)
+    end
+  end
 end
 

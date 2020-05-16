@@ -55,3 +55,5 @@ end
 class Gadget < DatabaseHelper::Base
 end
 
+class Gizmo < DatabaseHelper::Base
+end
