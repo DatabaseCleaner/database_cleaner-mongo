@@ -14,22 +14,19 @@ module DatabaseCleaner
       end
 
       def clean
-        if @only.any?
-          collections.each { |c| c.delete_many if @only.include?(c.name) }
-        else
-          collections.each { |c| c.delete_many unless @except.include?(c.name) }
-        end
-        true
+        collections_to_delete.each(&:delete_many)
       end
 
       private
 
-      def database
-        db
+      def collections_to_delete
+        collections.select do |c|
+          (@only.none? || @only.include?(c.name)) && !@except.include?(c.name)
+        end
       end
 
       def collections
-        database.collections.select { |c| c.name !~ /^system\./ }
+        db.collections.select { |c| c.name !~ /^system\./ }
       end
     end
   end
