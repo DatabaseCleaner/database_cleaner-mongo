@@ -1,5 +1,5 @@
 require 'database_cleaner/mongo/version'
 require 'database_cleaner/core'
-require 'database_cleaner/mongo/truncation'
+require 'database_cleaner/mongo/deletion'
 
-DatabaseCleaner[:mongo].strategy = :truncation
+DatabaseCleaner[:mongo].strategy = :deletion

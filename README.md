@@ -19,39 +19,11 @@ end
 
 ## Supported Strategies
 
-<table>
-  <tbody>
-    <tr>
-      <th>Truncation</th>
-      <th>Transaction</th>
-      <th>Deletion</th>
-    </tr>
-    <tr>
-      <td> <b>Yes</b></td>
-      <td> No</td>
-      <td> No</td>
-    </tr>
-  </tbody>
-</table>
-
-(Default strategy is denoted in bold)
+The mongo adapter only has one strategy: the deletion strategy.
 
 ## Configuration options
 
-<table>
-  <tbody>
-    <tr>
-      <th>ORM</th>
-      <th>How to access</th>
-      <th>Notes</th>
-    </tr>
-    <tr>
-      <td> Mongo</td>
-      <td> <code>DatabaseCleaner[:mongo]</code></td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+The deletion strategy has no options.
 
 ## COPYRIGHT
 
