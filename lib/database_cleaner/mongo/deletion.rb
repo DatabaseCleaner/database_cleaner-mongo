@@ -4,7 +4,7 @@ require 'mongo'
 
 module DatabaseCleaner
   module Mongo
-    class Truncation < Strategy
+    class Deletion < Strategy
       def initialize only: [], except: [], cache_tables: nil
         @only = only
         @except = except

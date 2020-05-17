@@ -1,7 +1,7 @@
-require 'database_cleaner/mongo/truncation'
+require 'database_cleaner/mongo/deletion'
 require './spec/support/database_helper'
 
-RSpec.describe DatabaseCleaner::Mongo::Truncation do
+RSpec.describe DatabaseCleaner::Mongo::Deletion do
   let(:helper) { DatabaseHelper.new }
 
   around do |example|
@@ -19,7 +19,7 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
   end
 
   context "by default" do
-    it "truncates all collections" do
+    it "deletes all collections" do
       expect { subject.clean }.to change {
         [Widget.count, Gadget.count]
       }.from([1,1]).to([0,0])
@@ -29,7 +29,7 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
   context "when collections are provided to the :only option" do
     subject { described_class.new(only: ['Widget']) }
 
-    it "only truncates the specified collections" do
+    it "only deletes the specified collections" do
       expect { subject.clean }.to change {
         [Widget.count, Gadget.count]
       }.from([1,1]).to([0,1])
@@ -39,7 +39,7 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
   context "when collections are provided to the :except option" do
     subject { described_class.new(except: ['Widget']) }
 
-    it "truncates all but the specified collections" do
+    it "deletes all but the specified collections" do
       expect { subject.clean }.to change {
         [Widget.count, Gadget.count]
       }.from([1,1]).to([1,0])
@@ -53,7 +53,7 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
       Gizmo.new(name: 'some gizmo').save!
     end
 
-    it "truncates new collection" do
+    it "deletes new collection" do
       expect { subject.clean }.to change {
         Gizmo.count
       }.from(1).to(0)
