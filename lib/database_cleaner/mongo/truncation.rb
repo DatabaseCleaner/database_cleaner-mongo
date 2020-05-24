@@ -1,12 +1,16 @@
 require 'database_cleaner/strategy'
+require 'database_cleaner/deprecation'
 require 'mongo'
 
 module DatabaseCleaner
   module Mongo
     class Truncation < Strategy
-      def initialize only: [], except: []
+      def initialize only: [], except: [], cache_tables: nil
         @only = only
         @except = except
+        if !cache_tables.nil?
+          DatabaseCleaner.deprecate "The mongo adapter's :cache_tables option has no effect, and will be removed in database_cleaner-mongo 3.0."
+        end
       end
 
       def db

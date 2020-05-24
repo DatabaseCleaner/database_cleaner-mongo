@@ -59,5 +59,12 @@ RSpec.describe DatabaseCleaner::Mongo::Truncation do
       }.from(1).to(0)
     end
   end
+
+  context "with deprecated :cache_tables option" do
+    it "prints a deprecation warning" do
+      expect(DatabaseCleaner).to receive(:deprecate)
+      described_class.new(cache_tables: false)
+    end
+  end
 end
 
